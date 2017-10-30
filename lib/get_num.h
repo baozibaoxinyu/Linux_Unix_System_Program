@@ -1,4 +1,4 @@
-#ifdef GET_NUM_H
+#ifndef GET_NUM_H
 #define GET_NUM_H
 
 #define GN_NONNEG	01	/* Value must be >= 0 */

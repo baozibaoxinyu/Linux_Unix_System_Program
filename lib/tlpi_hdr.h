@@ -1,5 +1,5 @@
 #ifndef TLPI_HDR_H
-#define TIPI_HDR_H	/* Prevent accidental double inclusion */
+#define TLPI_HDR_H	/* Prevent accidental double inclusion */
 
 #include <sys/types.h>	/* Type definitions usedd by many programs */
 #include <stdio.h>	/* Standard I/O funtions */

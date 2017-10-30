@@ -1,5 +1,6 @@
 #ifndef ERROR_FUNCTIONS_H
 #define ERROR_FUNCTIONS_H
+#include <stdarg.h>
 /* 此头文件声明了errMsg(),errExit(),err_exit()以及errExitEN()函数，用以诊断系统调用和库函数时发生的错误。
  * errMsg()函数会在标准错误设备上打印消息。除了将一个终止换行符自动追加到输出字符串尾部以外，该函数的参数
  * 列表与printf()所用相同。errMsg()函数会打印出与当前errno值相对应的错误文本，其中包括了错误名以及由strerror()
@@ -42,7 +43,7 @@ void errMsg(const char* format,...);	/* ...表明参数不确定 */
 #define NORETURN
 #endif
 
-void errExit(const char* format,...) NORETURN;
+void errExit(const char* format,...)NORETURN;
 void err_exit(const char* format,...) NORETURN;
 void errExitEN(int errnum,const char* format,...) NORETURN;
 /* 对于其他类型的错误使用fatal(),usageErr(),cmdLineErr()函数来处理。
@@ -52,8 +53,8 @@ void errExitEN(int errnum,const char* format,...) NORETURN;
  * 然后调用exit()终止程序。
  * cmdLineErr()与usageErr()类似，但其错误诊断是针对特定程序的命令行参数。
  */
-void fatal(const char* format,...) NORETURN;
+void fatal(const char* format,...)NORETURN;
 void usageErr(const char* format,...) NORETURN;
-void cmdLineErr(const char* format,...) NORETURN;
+void cmdLineErr(const char* format,...)NORETURN;
 
 #endif

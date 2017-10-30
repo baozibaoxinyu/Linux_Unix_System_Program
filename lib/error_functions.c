@@ -1,7 +1,7 @@
 #include <stdarg.h>
 #include "error_functions.h"
 #include "tlpi_hdr.h"
-#include "ename.c.inc"		/* Defines ename and MAX_ENAME */'
+#include "ename.c"		/* Defines ename and MAX_ENAME */
 
 #ifdef _GNUC_
 _attribute_ ((_noreturn_))
@@ -28,7 +28,7 @@ static void outputError(Boolean useErr,int err,Boolean flushStdout,
 	if(useErr)
 		snprintf(errText,BUF_SIZE," [%s %s]",
 			(err > 0 && err <= MAX_ENAME)?
-			ename[err]:"?UNKNOW?",stderror(err));
+			ename[err]:"?UNKNOW?",strerror(err));
 	else
 		snprintf(errText,BUF_SIZE,":");
 	snprintf(buf,BUF_SIZE,"ERROR%s %s\n",errText,userMsg);
@@ -49,7 +49,7 @@ void errMsg(const char* format,...){
 void errExit(const char* format,...){
 	va_list argList;
 	va_start(argList,format);
-	outputError(TRUE,errno,TRUE,format,arglist);
+	outputError(TRUE,errno,TRUE,format,argList);
 	va_end(argList);
 	terminate(TRUE);
 }
@@ -84,7 +84,7 @@ void usageErr(const char* format,...){
 	fflush(stderr);			/* In case stderr is not line-buffered */
 	exit(EXIT_FAILURE);
 }
-void cmdLineErr(cosnt char* format,...){
+void cmdLineErr(const char* format,...){
 	va_list argList;
         fflush(stdout);                 /* Flust any pending stdout */
         fprintf(stderr,"Usage: ");
